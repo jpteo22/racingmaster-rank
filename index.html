@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>레이싱마스터 랭킹 뷰어</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070a;
+      --panel: #10141b;
+      --panel-soft: #171d26;
+      --text: #f4f7fb;
+      --muted: #9aa7b7;
+      --line: #26303d;
+      --line-strong: #3a4656;
+      --accent: #14b8a6;
+      --accent-dark: #5eead4;
+      --gold: #facc15;
+      --silver: #cbd5e1;
+      --bronze: #fb923c;
+      --shadow: 0 18px 44px rgba(0, 0, 0, .42);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+      letter-spacing: 0;
+    }
+
+    button { font: inherit; cursor: pointer; }
+
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 7, 10, .92);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.05;
+    }
+
+    .brand p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tabs,
+    .state-tabs {
+      display: inline-grid;
+      grid-auto-flow: column;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .tabs { justify-self: center; }
+
+    .tab,
+    .state-tab {
+      min-height: 52px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      padding: 0 34px;
+      font-size: 17px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tab[aria-selected="true"],
+    .state-tab[aria-selected="true"] {
+      background: var(--accent);
+      color: #031311;
+    }
+
+    main {
+      width: min(1440px, calc(100% - 32px));
+      margin: 22px auto 40px;
+    }
+
+    .state-row {
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+    }
+
+    .state-tabs {
+      min-width: min(420px, 100%);
+    }
+
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      min-height: 80px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 13px 14px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 21px;
+      line-height: 1.15;
+    }
+
+    .rank-shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #151b24;
+      color: #b7c1cf;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .col-rank { width: 68px; }
+    .col-car { width: 250px; }
+
+    .rank-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--panel-soft);
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .rank-1 { background: #3a2f0d; color: var(--gold); }
+    .rank-2 { background: #29313d; color: var(--silver); }
+    .rank-3 { background: #3b2416; color: var(--bronze); }
+
+    .car-cell {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .car-image {
+      width: 72px;
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(20, 184, 166, .2), rgba(250, 204, 21, .08)),
+        linear-gradient(160deg, #1f2937, #0b1017);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .car-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .car-shape {
+      position: relative;
+      width: 48px;
+      height: 20px;
+      border-radius: 12px 16px 8px 8px;
+      background: var(--accent);
+      box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .2);
+    }
+
+    .car-shape::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: -8px;
+      width: 20px;
+      height: 11px;
+      border-radius: 10px 10px 2px 2px;
+      background: #a7f3d0;
+      border: 2px solid var(--accent-dark);
+    }
+
+    .car-shape::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      bottom: -5px;
+      width: 36px;
+      height: 8px;
+      background:
+        radial-gradient(circle at 5px 4px, #020617 0 4px, transparent 4px),
+        radial-gradient(circle at 31px 4px, #020617 0 4px, transparent 4px);
+    }
+
+    .car-name {
+      margin: 0;
+      font-weight: 900;
+      line-height: 1.2;
+      word-break: keep-all;
+    }
+
+    time {
+      font-variant-numeric: tabular-nums;
+      font-weight: 850;
+    }
+
+    .empty {
+      padding: 34px 16px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    @media (max-width: 1180px) {
+      .header-inner { grid-template-columns: 1fr; }
+      .tabs { justify-self: stretch; width: 100%; grid-auto-columns: 1fr; }
+      .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rank-shell { overflow-x: auto; }
+      table { min-width: 920px; }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner,
+      main { width: min(100% - 20px, 1440px); }
+      .metric-strip { grid-template-columns: 1fr; }
+      .state-tabs { width: 100%; grid-auto-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1>레이싱마스터 랭킹</h1>
+        <p>racingmaster-data.json 기반 뷰어</p>
+      </div>
+      <nav class="tabs" aria-label="차량 클래스">
+        <button class="tab" data-class="standard" aria-selected="true">스탠다드</button>
+        <button class="tab" data-class="performance" aria-selected="false">퍼포먼스</button>
+        <button class="tab" data-class="extreme" aria-selected="false">익스트림</button>
+      </nav>
+      <div></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="state-row">
+      <div class="state-tabs" aria-label="돌파 상태">
+        <button class="state-tab" data-state="base" aria-selected="true">명함</button>
+        <button class="state-tab" data-state="full" aria-selected="false">풀돌</button>
+      </div>
+    </section>
+
+    <section class="metric-strip" id="metrics" aria-label="최고 기록"></section>
+
+    <section class="rank-shell">
+      <table>
+        <thead>
+          <tr id="headRow"></tr>
+        </thead>
+        <tbody id="rankBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    const state = { class: "standard", breakthrough: "base", data: null };
+    const els = {
+      classTabs: document.querySelectorAll(".tab"),
+      stateTabs: document.querySelectorAll(".state-tab"),
+      headRow: document.getElementById("headRow"),
+      rankBody: document.getElementById("rankBody"),
+      metrics: document.getElementById("metrics")
+    };
+
+    init();
+
+    async function init() {
+      bindEvents();
+      try {
+        const response = await fetch("racingmaster-data.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("data file missing");
+        state.data = await response.json();
+      } catch {
+        state.data = { tracks: [], cars: [] };
+        els.rankBody.innerHTML = `<tr><td class="empty">racingmaster-data.json 파일을 같은 폴더에 올려주세요.</td></tr>`;
+        return;
+      }
+      render();
+    }
+
+    function bindEvents() {
+      els.classTabs.forEach((button) => {
+        button.addEventListener("click", () => {
+          state.class = button.dataset.class;
+          render();
+        });
+      });
+      els.stateTabs.forEach((button) => {
+        button.addEventListener("click", () => {
+          state.breakthrough = button.dataset.state;
+          render();
+        });
+      });
+    }
+
+    function render() {
+      syncTabs();
+      renderHead();
+      const ranked = getRankedCars();
+      renderMetrics(ranked);
+      renderRows(ranked);
+    }
+
+    function syncTabs() {
+      els.classTabs.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.class === state.class)));
+      els.stateTabs.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.state === state.breakthrough)));
+    }
+
+    function renderHead() {
+      els.headRow.innerHTML = `
+        <th class="col-rank">순위</th>
+        <th class="col-car">차량</th>
+        ${state.data.tracks.map((track) => `<th>${escapeHtml(track.name)}</th>`).join("")}
+      `;
+    }
+
+    function getRankedCars() {
+      const cars = state.data.cars.filter((car) => car.class === state.class);
+      if (!cars.length) return [];
+      const bestRecords = getBestRecords(cars);
+      return cars
+        .map((car) => ({ ...car, score: calculateScore(car, bestRecords) }))
+        .sort((a, b) => a.score.totalGap - b.score.totalGap || a.name.localeCompare(b.name, "ko"));
+    }
+
+    function getBestRecords(cars) {
+      return state.data.tracks.reduce((acc, track) => {
+        acc[track.id] = Math.min(...cars.map((car) => car.records[state.breakthrough][track.id]));
+        return acc;
+      }, {});
+    }
+
+    function calculateScore(car, bestRecords) {
+      const totalGap = state.data.tracks.reduce((sum, track) => {
+        const record = car.records[state.breakthrough][track.id];
+        return sum + ((record - bestRecords[track.id]) / bestRecords[track.id]) * 100;
+      }, 0);
+      return { totalGap };
+    }
+
+    function renderMetrics(cars) {
+      if (!cars.length) {
+        els.metrics.innerHTML = "";
+        return;
+      }
+      const best = getBestRecords(cars);
+      els.metrics.innerHTML = state.data.tracks.map((track) => {
+        const bestCar = cars.find((car) => car.records[state.breakthrough][track.id] === best[track.id]);
+        return `
+          <article class="metric">
+            <span>${escapeHtml(track.name)}</span>
+            <strong>${formatTime(best[track.id])}</strong>
+            <span>${bestCar ? escapeHtml(bestCar.name) : ""}</span>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderRows(cars) {
+      if (!cars.length) {
+        els.rankBody.innerHTML = `<tr><td colspan="${state.data.tracks.length + 2}" class="empty">표시할 차량이 없습니다.</td></tr>`;
+        return;
+      }
+
+      els.rankBody.innerHTML = cars.map((car, index) => `
+        <tr>
+          <td><span class="rank-badge rank-${index + 1}">${index + 1}</span></td>
+          <td>
+            <div class="car-cell">
+              <div class="car-image">${imageSrc(car) ? `<img src="${escapeHtml(imageSrc(car))}" alt="${escapeHtml(car.name)}">` : `<span class="car-shape" aria-hidden="true"></span>`}</div>
+              <p class="car-name">${escapeHtml(car.name)}</p>
+            </div>
+          </td>
+          ${state.data.tracks.map((track) => `<td><time>${formatTime(car.records[state.breakthrough][track.id])}</time></td>`).join("")}
+        </tr>
+      `).join("");
+    }
+
+    function formatTime(ms) {
+      const minutes = Math.floor(ms / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      const milliseconds = ms % 1000;
+      return `${minutes}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
+    }
+
+    function imageSrc(car) {
+      if (car.imageName) return `images/${car.class}/${car.imageName}`;
+      if (car.imageUrl) return car.imageUrl;
+      return "";
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "tokyo_skytree_half",
+      "name": "도쿄 스카이트리 하프"
+    },
+    {
+      "id": "sicilia",
+      "name": "시칠리아 진주해안"
+    },
+    {
+      "id": "indy_reverse",
+      "name": "인디애나폴리스 클래식 서킷 리버스"
+    },
+    {
+      "id": "redbull_fiesta",
+      "name": "레드불 링 서킷 피에스타 서킷"
+    }
+  ],
+  "cars": [
+    {
+      "id": "car-1787416221242",
+      "name": "GT86 '13 MF Ghost",
+      "imageName": "GT8613.png",
+      "class": "standard",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 95598,
+          "sicilia": 80811,
+          "indy_reverse": 95650,
+          "redbull_fiesta": 87974
+        },
+        "full": {
+          "tokyo_skytree_half": 88291,
+          "sicilia": 75826,
+          "indy_reverse": 91412,
+          "redbull_fiesta": 84535
+        }
+      }
+    },
+    {
+      "id": "car-1787416342877",
+      "name": "Xsara WRC '04",
+      "imageName": "XSARA04.png",
+      "class": "standard",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 99918,
+          "sicilia": 84904,
+          "indy_reverse": 101002,
+          "redbull_fiesta": 92771
+        },
+        "full": {
+          "tokyo_skytree_half": 91532,
+          "sicilia": 78518,
+          "indy_reverse": 93193,
+          "redbull_fiesta": 85986
+        }
+      }
+    },
+    {
+      "id": "car-1787416592616",
+      "name": "AE86 '85 Initial D",
+      "imageName": "AE86D85.png",
+      "class": "standard",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 93274,
+          "sicilia": 80801,
+          "indy_reverse": 95886,
+          "redbull_fiesta": 88812
+        },
+        "full": {
+          "tokyo_skytree_half": 86932,
+          "sicilia": 75166,
+          "indy_reverse": 89000,
+          "redbull_fiesta": 83821
+        }
+      }
+    },
+    {
+      "id": "car-1787416661779",
+      "name": "RX7 Initial D '01",
+      "imageName": "RX7D01.png",
+      "class": "standard",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 93975,
+          "sicilia": 79004,
+          "indy_reverse": 94381,
+          "redbull_fiesta": 86701
+        },
+        "full": {
+          "tokyo_skytree_half": 87453,
+          "sicilia": 74587,
+          "indy_reverse": 88573,
+          "redbull_fiesta": 82458
+        }
+      }
+    },
+    {
+      "id": "car-1787416704069",
+      "name": "RX7 '01",
+      "imageName": "RX701.png",
+      "class": "standard",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 94923,
+          "sicilia": 80587,
+          "indy_reverse": 97293,
+          "redbull_fiesta": 88738
+        },
+        "full": {
+          "tokyo_skytree_half": 88391,
+          "sicilia": 75794,
+          "indy_reverse": 89320,
+          "redbull_fiesta": 83197
+        }
+      }
+    },
+    {
+      "id": "car-1787416764355",
+      "name": "GT-R32 Initial D '94",
+      "imageName": "GTR32D94.png",
+      "class": "standard",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 96432,
+          "sicilia": 81791,
+          "indy_reverse": 96607,
+          "redbull_fiesta": 89358
+        },
+        "full": {
+          "tokyo_skytree_half": 88644,
+          "sicilia": 75933,
+          "indy_reverse": 90411,
+          "redbull_fiesta": 83789
+        }
+      }
+    }
+  ]
+}
