@@ -18,6 +18,8 @@
       --accent-glow: rgba(245, 158, 11, 0.35);
       --green: #22c55e;
       --green-glow: rgba(34, 197, 94, 0.4);
+      --red: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.3);
       --gold: #fbbf24;
       --silver: #94a3b8;
       --bronze: #fb923c;
@@ -100,13 +102,13 @@
 
     main {
       width: min(1200px, calc(100% - 24px));
-      margin: 14px auto 40px;
+      margin: 10px auto 30px;
     }
 
     .state-row {
       display: grid;
       place-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .state-tabs {
@@ -116,25 +118,25 @@
     .metric-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
     .metric {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 6px;
       background: var(--panel);
-      padding: 8px 10px;
+      padding: 6px 8px;
     }
 
     .metric-map {
-      width: 46px;
+      width: 42px;
       aspect-ratio: 16 / 10;
       border: 1px solid var(--line);
-      border-radius: 5px;
+      border-radius: 4px;
       background: #05070c;
       overflow: hidden;
       flex-shrink: 0;
@@ -170,7 +172,7 @@
 
     .metric-body strong {
       display: block;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.1;
       font-variant-numeric: tabular-nums;
     }
@@ -178,7 +180,7 @@
     .metric-body span.track-car {
       display: block;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 10.5px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -187,7 +189,7 @@
     .card-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .car-card {
@@ -195,9 +197,9 @@
       align-items: center;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 8px 12px;
-      gap: 12px;
+      border-radius: 6px;
+      padding: 6px 10px;
+      gap: 10px;
       box-shadow: var(--shadow);
       transition: border-color 0.2s ease, background 0.2s ease;
     }
@@ -210,21 +212,21 @@
     .block-info {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex: 1.2;
+      gap: 8px;
+      flex: 1.3;
       min-width: 260px;
     }
 
     .rank-badge {
       display: inline-grid;
       place-items: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 5px;
       background: var(--line);
       color: var(--text);
       font-weight: 900;
-      font-size: 14px;
+      font-size: 13px;
       flex-shrink: 0;
     }
 
@@ -233,10 +235,10 @@
     .rank-3 { background: rgba(251, 146, 60, 0.15); color: var(--bronze); border: 1px solid rgba(251, 146, 60, 0.4); }
 
     .car-image {
-      width: 64px;
+      width: 56px;
       aspect-ratio: 16 / 10;
       border: 1px solid var(--line);
-      border-radius: 5px;
+      border-radius: 4px;
       background: #05070c;
       display: grid;
       place-items: center;
@@ -256,12 +258,13 @@
       flex-direction: column;
       gap: 2px;
       min-width: 0;
+      flex: 1;
     }
 
     .car-name {
       margin: 0;
       font-weight: 900;
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
@@ -272,7 +275,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
     }
@@ -285,24 +288,36 @@
       color: var(--accent);
     }
 
+    .car-score-large {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
+      margin-left: auto;
+      padding-left: 8px;
+      text-shadow: 0 0 10px var(--red-glow);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     .block-tracks {
       display: flex;
-      gap: 8px;
-      flex: 1.6;
+      gap: 6px;
+      flex: 1.5;
     }
 
     .track-group {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 6px;
     }
 
     .track-cell {
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid var(--line);
-      border-radius: 5px;
-      padding: 6px 8px;
+      border-radius: 4px;
+      padding: 4px 6px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -310,7 +325,7 @@
     }
 
     .track-name {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
       color: var(--muted);
       white-space: nowrap;
@@ -319,32 +334,32 @@
     }
 
     .track-time {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 850;
       font-variant-numeric: tabular-nums;
     }
 
     .track-cell.best-record .track-time {
       color: var(--green);
-      text-shadow: 0 0 8px var(--green-glow);
+      text-shadow: 0 0 6px var(--green-glow);
     }
 
     .empty {
-      padding: 30px 16px;
+      padding: 24px 16px;
       color: var(--muted);
       text-align: center;
       font-weight: 800;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 6px;
     }
 
     @media (max-width: 960px) {
       .car-card {
         flex-direction: column;
         align-items: stretch;
-        gap: 8px;
-        padding: 10px;
+        gap: 6px;
+        padding: 8px;
       }
       .block-info {
         width: 100%;
@@ -352,7 +367,7 @@
       }
       .block-tracks {
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
       }
       .track-group {
         display: grid;
@@ -362,7 +377,7 @@
 
     @media (max-width: 640px) {
       .header-inner,
-      main { width: min(100% - 16px, 1200px); }
+      main { width: min(100% - 12px, 1200px); }
       
       .header-inner {
         grid-template-columns: 1fr;
@@ -384,7 +399,7 @@
         text-align: center;
       }
 
-      .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+      .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
       .state-tabs { width: 100%; grid-auto-columns: 1fr; }
     }
   </style>
@@ -474,8 +489,8 @@
       if (!cars.length) return [];
       const bestRecords = getBestRecords(cars);
       return cars
-        .map((car) => ({ ...car, score: calculateScore(car, bestRecords) }))
-        .sort((a, b) => a.score.totalGap - b.score.totalGap || a.name.localeCompare(b.name, "ko"));
+        .map((car) => ({ ...car, scoreData: calculateScore(car, bestRecords) }))
+        .sort((a, b) => a.scoreData.totalGap - b.scoreData.totalGap || a.name.localeCompare(b.name, "ko"));
     }
 
     function getBestRecords(cars) {
@@ -490,7 +505,9 @@
         const record = car.records[state.breakthrough][track.id];
         return sum + ((record - bestRecords[track.id]) / bestRecords[track.id]) * 100;
       }, 0);
-      return { totalGap };
+
+      const score = Math.max(0, 100 - totalGap).toFixed(2);
+      return { totalGap, score };
     }
 
     function renderMetrics(cars) {
@@ -531,7 +548,8 @@
         const rank = index + 1;
         const rankClass = rank <= 3 ? `rank-${rank}` : "";
         const tuningVal = car.tuning ? escapeHtml(car.tuning) : "00000";
-        const maxPointVal = car.maxpoint !== undefined && car.maxpoint !== null ? escapeHtml(car.maxpoint) : "-";
+        const maxPointVal = car.maxPoint !== undefined && car.maxPoint !== null ? escapeHtml(car.maxPoint) : "-";
+        const scoreVal = car.scoreData.score;
 
         const trackGroups = [];
         for (let i = 0; i < tracks.length; i += 2) {
@@ -571,6 +589,7 @@
                   <span class="car-tuning">튜닝: ${tuningVal}</span>
                 </div>
               </div>
+              <div class="car-score-large">${scoreVal}</div>
             </div>
             <div class="block-tracks">
               ${trackBlocksHtml}
