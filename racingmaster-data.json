@@ -553,7 +553,7 @@
       "class": "standard",
       "tuning": "00000",
       "maxPoint": 0,
-      "imageName": "FIAT500F65",
+      "imageName": "FIAT500F65.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 120000,
@@ -685,7 +685,7 @@
       "class": "standard",
       "tuning": "00000",
       "maxPoint": 0,
-      "imageName": "M235I19",
+      "imageName": "M235I19.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 120000,
