@@ -134,7 +134,7 @@
 
     .metric-map {
       width: 42px;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 1 / 1;
       border: 1px solid var(--line);
       border-radius: 4px;
       background: #05070c;
@@ -179,8 +179,9 @@
 
     .metric-body span.track-car {
       display: block;
-      color: var(--muted);
+      color: var(--green);
       font-size: 10.5px;
+      font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -189,7 +190,7 @@
     .card-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .car-card {
@@ -201,8 +202,7 @@
       padding: 6px 10px;
       gap: 16px;
       box-shadow: var(--shadow);
-      width: fit-content; /* 카드 전체 가로폭이 내용물 크기에 맞게 줄어들도록 설정 */
-      max-width: 100%;
+      width: 100%;
       transition: border-color 0.2s ease, background 0.2s ease;
     }
 
@@ -215,8 +215,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      flex: 0 0 320px;
-      max-width: 340px;
+      flex: 0 0 280px;
+      max-width: 280px;
       min-width: 0;
     }
 
@@ -304,16 +304,11 @@
     }
 
     .block-tracks {
-      display: flex;
-      gap: 6px;
-      min-width: 0;
-    }
-
-    .track-group {
-      flex: 1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 6px;
+      flex: 1;
+      min-width: 0;
     }
 
     .track-cell {
@@ -325,6 +320,7 @@
       flex-direction: column;
       justify-content: center;
       gap: 1px;
+      min-width: 0;
     }
 
     .track-name {
@@ -358,28 +354,28 @@
     }
 
     @media (max-width: 960px) {
+      .card-list {
+        gap: 14px;
+      }
       .car-card {
-        width: 100%;
         flex-direction: column;
         align-items: stretch;
-        gap: 8px;
-        padding: 10px;
+        gap: 12px;
+        padding: 12px;
       }
       .block-info {
         width: 100%;
         max-width: none;
         flex: none;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line-strong);
       }
       .block-tracks {
-        flex-direction: column;
-        gap: 6px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 4px;
       }
-      .track-group {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
+      .track-name { font-size: 9px; }
+      .track-time { font-size: 11px; }
     }
 
     @media (max-width: 640px) {
@@ -408,6 +404,7 @@
 
       .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
       .state-tabs { width: 100%; grid-auto-columns: 1fr; }
+      .track-name { font-size: 8.5px; }
     }
   </style>
 </head>
@@ -558,29 +555,28 @@
         const maxPointVal = car.maxPoint !== undefined && car.maxPoint !== null ? escapeHtml(car.maxPoint) : "-";
         const scoreVal = car.scoreData.score;
 
-        const trackGroups = [];
-        for (let i = 0; i < tracks.length; i += 2) {
-          trackGroups.push(tracks.slice(i, i + 2));
-        }
+        const trackBlocksHtml = tracks.map((track) => {
+          const recordMs = car.records[state.breakthrough][track.id];
+          const isBest = recordMs === best[track.id];
+          
+          let trackDisplayName = track.name;
+          if (trackDisplayName.includes("스카이트리")) {
+            trackDisplayName = "스카이트리 하프";
+          } else if (trackDisplayName.includes("진주해안")) {
+            trackDisplayName = "진주해안";
+          } else if (trackDisplayName.includes("클래식")) {
+            trackDisplayName = "클래식 서킷 리버스";
+          } else if (trackDisplayName.includes("피에스타")) {
+            trackDisplayName = "피에스타 서킷";
+          }
 
-        const trackBlocksHtml = trackGroups.map((group) => `
-          <div class="track-group">
-            ${group.map((track) => {
-              const recordMs = car.records[state.breakthrough][track.id];
-              const isBest = recordMs === best[track.id];
-              let trackDisplayName = track.name;
-              if (trackDisplayName.includes("인디애나폴리스")) {
-                trackDisplayName = trackDisplayName.replace("인디애나폴리스", "인디애나");
-              }
-              return `
-                <div class="track-cell ${isBest ? 'best-record' : ''}">
-                  <span class="track-name" title="${escapeHtml(track.name)}">${escapeHtml(trackDisplayName)}</span>
-                  <span class="track-time">${formatTime(recordMs)}</span>
-                </div>
-              `;
-            }).join("")}
-          </div>
-        `).join("");
+          return `
+            <div class="track-cell ${isBest ? 'best-record' : ''}">
+              <span class="track-name" title="${escapeHtml(track.name)}">${escapeHtml(trackDisplayName)}</span>
+              <span class="track-time">${formatTime(recordMs)}</span>
+            </div>
+          `;
+        }).join("");
 
         return `
           <article class="car-card">
