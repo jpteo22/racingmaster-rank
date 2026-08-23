@@ -199,7 +199,7 @@
       "id": "car-1787457219096",
       "name": "M2 Coupe '23",
       "class": "standard",
-      "tuning": "00000",
+      "tuning": "13232",
       "maxPoint": 814,
       "imageName": "M2COUPE23.png",
       "records": {
@@ -214,6 +214,50 @@
           "sicilia": 77238,
           "indy_reverse": 92413,
           "redbull_fiesta": 85977
+        }
+      }
+    },
+    {
+      "id": "car-1787457906438",
+      "name": "Avante N '23",
+      "class": "standard",
+      "tuning": "11332",
+      "maxPoint": 812,
+      "imageName": "AVANTEN23.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 98924,
+          "sicilia": 83709,
+          "indy_reverse": 100075,
+          "redbull_fiesta": 92615
+        },
+        "full": {
+          "tokyo_skytree_half": 89256,
+          "sicilia": 76685,
+          "indy_reverse": 90366,
+          "redbull_fiesta": 84885
+        }
+      }
+    },
+    {
+      "id": "car-1787458225651",
+      "name": "Emira '21",
+      "class": "standard",
+      "tuning": "23232",
+      "maxPoint": 0,
+      "imageName": "EMIRA21.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 99171,
+          "sicilia": 84297,
+          "indy_reverse": 99362,
+          "redbull_fiesta": 92203
+        },
+        "full": {
+          "tokyo_skytree_half": 91730,
+          "sicilia": 77139,
+          "indy_reverse": 92599,
+          "redbull_fiesta": 85643
         }
       }
     }
