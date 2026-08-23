@@ -227,7 +227,7 @@
     .card-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px; /* 기본 간격을 10px로 변경 */
     }
 
     .car-card {
@@ -237,10 +237,15 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 6px 10px;
-      gap: 60px; /* 점수 오른쪽 여백 60px으로 변경 */
+      gap: 60px;
       box-shadow: var(--shadow);
       width: 100%;
       transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    /* 5개 단위로 30px 띄움 (마지막 카드가 아닌 경우만) */
+    .car-card:nth-child(5n):not(:last-child) {
+      margin-bottom: 20px; /* 기본 gap 10px + margin 20px = 총 30px 간격 */
     }
 
     .car-card:hover {
@@ -349,7 +354,7 @@
 
     .track-cell {
       background: rgba(15, 23, 42, 0.6);
-      border: none; /* 맵 기록 테두리 제거 */
+      border: none;
       border-radius: 4px;
       padding: 4px 6px;
       display: flex;
@@ -402,19 +407,19 @@
       .car-score-large { font-size: 20px; }
       
       .card-list {
-        gap: 14px;
+        gap: 10px; /* 모바일도 10px로 통일 */
       }
       .car-card {
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
-        padding: 12px;
+        gap: 8px; /* 구분선 아래 여백 및 요소간 간격을 8px로 변경 */
+        padding: 8px; /* 모바일 카드 전체 패딩 (맵 기록 아래 여백 포함) 8px로 변경 */
       }
       .block-info {
         width: 100%;
         max-width: none;
         flex: none;
-        padding-bottom: 12px;
+        padding-bottom: 8px; /* 구분선 위 여백을 8px로 변경 */
         border-bottom: 1px solid var(--line-strong);
       }
       .block-tracks {
