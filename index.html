@@ -85,7 +85,7 @@
       background: transparent;
       color: var(--muted);
       padding: 0 20px;
-      font-size: 14px;
+      font-size: 15px; /* PC 폰트 크기업 */
       font-weight: 800;
       white-space: nowrap;
       transition: all 0.2s ease;
@@ -131,7 +131,7 @@
     }
 
     .metric-map {
-      width: 42px;
+      width: 46px; /* PC 사이즈업 */
       aspect-ratio: 1 / 1;
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -160,7 +160,7 @@
     .metric-body span.track-label {
       display: block;
       color: var(--muted);
-      font-size: 10px;
+      font-size: 11px; /* PC 폰트 크기업 */
       font-weight: 800;
       text-transform: uppercase;
       white-space: nowrap;
@@ -170,7 +170,7 @@
 
     .metric-body strong {
       display: block;
-      font-size: 14px;
+      font-size: 16px; /* PC 폰트 크기업 */
       line-height: 1.1;
       font-variant-numeric: tabular-nums;
     }
@@ -178,7 +178,7 @@
     .metric-body span.track-car {
       display: block;
       color: var(--green);
-      font-size: 10.5px;
+      font-size: 11.5px; /* PC 폰트 크기업 */
       font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
@@ -221,13 +221,13 @@
     .rank-badge {
       display: inline-grid;
       place-items: center;
-      width: 28px;
-      height: 28px;
+      width: 30px; /* PC 사이즈업 */
+      height: 30px;
       border-radius: 5px;
       background: var(--line);
       color: var(--text);
       font-weight: 900;
-      font-size: 13px;
+      font-size: 14px; /* PC 폰트 크기업 */
       flex-shrink: 0;
     }
 
@@ -236,7 +236,7 @@
     .rank-3 { background: rgba(251, 146, 60, 0.15); color: var(--bronze); border: 1px solid rgba(251, 146, 60, 0.4); }
 
     .car-image {
-      width: 56px;
+      width: 62px; /* PC 사이즈업 */
       aspect-ratio: 16 / 10;
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -265,7 +265,7 @@
     .car-name {
       margin: 0;
       font-weight: 900;
-      font-size: 13.5px;
+      font-size: 15px; /* PC 폰트 크기업 */
       line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
@@ -276,7 +276,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 11px;
+      font-size: 12px; /* PC 폰트 크기업 */
       font-weight: 800;
       font-variant-numeric: tabular-nums;
     }
@@ -290,7 +290,7 @@
     }
 
     .car-score-large {
-      font-size: 20px;
+      font-size: 22px; /* PC 폰트 크기업 */
       font-weight: 900;
       color: var(--red);
       font-variant-numeric: tabular-nums;
@@ -321,7 +321,7 @@
     }
 
     .track-name {
-      font-size: 9.5px;
+      font-size: 11px; /* PC 폰트 크기업 */
       font-weight: 800;
       color: var(--muted);
       white-space: nowrap;
@@ -330,7 +330,7 @@
     }
 
     .track-time {
-      font-size: 12px;
+      font-size: 13.5px; /* PC 폰트 크기업 */
       font-weight: 850;
       font-variant-numeric: tabular-nums;
     }
@@ -349,7 +349,19 @@
       border-radius: 6px;
     }
 
+    /* ==== 모바일 및 태블릿 (기존 폰트 크기 유지) ==== */
     @media (max-width: 960px) {
+      .tab, .state-tab { font-size: 14px; }
+      .metric-map { width: 42px; }
+      .metric-body span.track-label { font-size: 10px; }
+      .metric-body strong { font-size: 14px; }
+      .metric-body span.track-car { font-size: 10.5px; }
+      .rank-badge { width: 28px; height: 28px; font-size: 13px; }
+      .car-image { width: 56px; }
+      .car-name { font-size: 13.5px; }
+      .car-sub-info { font-size: 11px; }
+      .car-score-large { font-size: 20px; }
+      
       .card-list {
         gap: 14px;
       }
