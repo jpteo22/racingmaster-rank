@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>레이싱마스터 랭킹 뷰어</title>
+  
+  <!-- Pretendard 웹폰트 (PC/모바일/외국인 접속 시 폰트 통합 및 깨짐 방지) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+
   <style>
     :root {
       color-scheme: dark;
@@ -16,7 +20,7 @@
       --line-strong: #334155;
       --accent: #f59e0b;
       --accent-glow: rgba(245, 158, 11, 0.35);
-      --ecu-active: #38bdf8; /* ECU 버튼 전용 블루 컬러 */
+      --ecu-active: #38bdf8;
       --ecu-glow: rgba(56, 189, 248, 0.35);
       --green: #22c55e;
       --red: #ef4444;
@@ -32,7 +36,8 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+      /* Pretendard 적용 */
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
       letter-spacing: -0.2px;
     }
 
@@ -457,7 +462,6 @@
         <button class="tab" data-class="extreme" aria-selected="false">익스트림</button>
       </nav>
       <div class="header-right">
-        <!-- ECU 탭이 헤더 안으로 이동됨 -->
         <div class="state-tabs" aria-label="돌파 상태">
           <button class="state-tab" data-state="base" aria-selected="true">ECU 0</button>
           <button class="state-tab" data-state="full" aria-selected="false">ECU 5</button>
