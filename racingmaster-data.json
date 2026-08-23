@@ -260,6 +260,28 @@
           "redbull_fiesta": 85643
         }
       }
+    },
+    {
+      "id": "car-1787474752494",
+      "name": "Silvia Spec-R '99",
+      "class": "standard",
+      "tuning": "13213",
+      "maxPoint": 809,
+      "imageName": "SILVIA99.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 99570,
+          "sicilia": 83738,
+          "indy_reverse": 99294,
+          "redbull_fiesta": 91135
+        },
+        "full": {
+          "tokyo_skytree_half": 91939,
+          "sicilia": 79271,
+          "indy_reverse": 93591,
+          "redbull_fiesta": 86046
+        }
+      }
     }
   ]
 }
