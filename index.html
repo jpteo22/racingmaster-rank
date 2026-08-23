@@ -280,7 +280,7 @@
     .rank-3 { background: rgba(251, 146, 60, 0.15); color: var(--bronze); border: 1px solid rgba(251, 146, 60, 0.4); }
 
     .car-image {
-      width: 62px;
+      width: 90px;
       aspect-ratio: 16 / 10;
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -412,19 +412,22 @@
       .car-card {
         flex-direction: column;
         align-items: stretch;
-        gap: 2px; /* 라인 아래 여백 2px 적용 */
-        padding: 8px; /* 카드 전체 외곽 여백 8px 유지 */
+        gap: 2px; /* 라인 아래 여백 2px */
+        padding: 4px 8px; /* 위아래 4px, 좌우 8px */
       }
       .block-info {
         width: 100%;
         max-width: none;
         flex: none;
-        padding-bottom: 5px; /* 라인 위 여백 5px 적용 */
+        padding-bottom: 5px; /* 라인 위 여백 5px */
         border-bottom: 1px solid var(--line-strong);
       }
       .block-tracks {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 4px;
+      }
+      .track-cell {
+        padding: 2px 4px; /* 랩타임셀 안쪽여백 상하 2px, 좌우 4px */
       }
       .track-name { font-size: 9px; }
       .track-time { font-size: 11px; }
