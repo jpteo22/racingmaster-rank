@@ -7,19 +7,21 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #05070a;
-      --panel: #10141b;
-      --panel-soft: #171d26;
-      --text: #f4f7fb;
-      --muted: #9aa7b7;
-      --line: #26303d;
-      --line-strong: #3a4656;
-      --accent: #14b8a6;
-      --accent-dark: #5eead4;
-      --gold: #facc15;
-      --silver: #cbd5e1;
+      --bg: #070b12;
+      --panel: #0e1624;
+      --panel-hover: #141f32;
+      --text: #f1f5f9;
+      --muted: #8b9bb4;
+      --line: #1e293b;
+      --line-strong: #334155;
+      --accent: #f59e0b;
+      --accent-glow: rgba(245, 158, 11, 0.35);
+      --green: #22c55e;
+      --green-glow: rgba(34, 197, 94, 0.4);
+      --gold: #fbbf24;
+      --silver: #94a3b8;
       --bronze: #fb923c;
-      --shadow: 0 18px 44px rgba(0, 0, 0, .42);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     * { box-sizing: border-box; }
@@ -29,7 +31,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
-      letter-spacing: 0;
+      letter-spacing: -0.2px;
     }
 
     button { font: inherit; cursor: pointer; }
@@ -39,26 +41,27 @@
       top: 0;
       z-index: 20;
       border-bottom: 1px solid var(--line);
-      background: rgba(5, 7, 10, .92);
+      background: rgba(7, 11, 18, 0.88);
       backdrop-filter: blur(12px);
     }
 
-    /* 전체 너비 20% 증가 (1150px) */
     .header-inner {
-      width: min(1150px, calc(100% - 32px));
+      width: min(1200px, calc(100% - 32px));
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
+      grid-template-columns: minmax(160px, 1fr) auto minmax(160px, 1fr);
       gap: 16px;
       align-items: center;
-      padding: 16px 0;
+      padding: 14px 0;
     }
 
-    /* 타이틀 크기 축소 */
     h1 {
       margin: 0;
-      font-size: clamp(18px, 2.5vw, 26px);
-      line-height: 1.05;
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #e2e8f0;
+      text-transform: uppercase;
     }
 
     .tabs,
@@ -76,143 +79,129 @@
 
     .tab,
     .state-tab {
-      min-height: 52px;
+      min-height: 44px;
       border: 0;
       border-radius: 6px;
       background: transparent;
       color: var(--muted);
-      padding: 0 34px;
-      font-size: 17px;
+      padding: 0 26px;
+      font-size: 15px;
       font-weight: 800;
       white-space: nowrap;
+      transition: all 0.2s ease;
     }
 
     .tab[aria-selected="true"],
     .state-tab[aria-selected="true"] {
       background: var(--accent);
-      color: #031311;
+      color: #080c14;
+      box-shadow: 0 0 15px var(--accent-glow);
     }
 
-    /* 메인 콘텐츠 너비 20% 증가 (1150px) */
     main {
-      width: min(1150px, calc(100% - 32px));
-      margin: 22px auto 40px;
+      width: min(1200px, calc(100% - 32px));
+      margin: 24px auto 50px;
     }
 
     .state-row {
       display: grid;
       place-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    /* 상태 탭 너비 기존 대비 약 70%로 축소 (300px) */
     .state-tabs {
-      min-width: min(300px, 100%);
+      min-width: min(260px, 100%);
     }
 
     .metric-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
     .metric {
-      min-height: 80px;
+      min-height: 76px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
-      padding: 13px 14px;
+      padding: 12px 14px;
     }
 
     .metric span {
       display: block;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
+      text-transform: uppercase;
     }
 
     .metric strong {
       display: block;
-      margin-top: 6px;
-      font-size: 21px;
+      margin-top: 4px;
+      font-size: 18px;
       line-height: 1.15;
+      font-variant-numeric: tabular-nums;
     }
 
-    .rank-shell {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .car-card {
+      display: flex;
+      align-items: center;
       background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      gap: 16px;
       box-shadow: var(--shadow);
+      transition: border-color 0.2s ease, background 0.2s ease;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
+    .car-card:hover {
+      border-color: var(--line-strong);
+      background: var(--panel-hover);
     }
 
-    th,
-    td {
-      border-bottom: 1px solid var(--line);
-      padding: 12px 10px;
-      text-align: left;
-      vertical-align: middle;
+    .block-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1.2;
+      min-width: 280px;
     }
-
-    /* 맵 이름 (테이블 헤더) 글자 크기 축소 */
-    th {
-      background: #151b24;
-      color: #b7c1cf;
-      font-size: 11px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    tr:last-child td { border-bottom: 0; }
-
-    /* 3위와 4위 사이 간격 여백 확대 (16px -> 32px) */
-    tbody tr:nth-child(3) td {
-      border-bottom: 32px solid var(--bg);
-    }
-
-    .col-rank { width: 68px; }
-    .col-car { width: 300px; } 
 
     .rank-badge {
       display: inline-grid;
       place-items: center;
       width: 36px;
       height: 36px;
-      border-radius: 50%;
-      background: var(--panel-soft);
+      border-radius: 8px;
+      background: var(--line);
       color: var(--text);
       font-weight: 900;
+      font-size: 15px;
+      flex-shrink: 0;
     }
 
-    .rank-1 { background: #3a2f0d; color: var(--gold); }
-    .rank-2 { background: #29313d; color: var(--silver); }
-    .rank-3 { background: #3b2416; color: var(--bronze); }
-
-    .car-cell {
-      display: grid;
-      grid-template-columns: 72px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-    }
+    .rank-1 { background: rgba(251, 191, 36, 0.15); color: var(--gold); border: 1px solid rgba(251, 191, 36, 0.4); }
+    .rank-2 { background: rgba(148, 163, 184, 0.15); color: var(--silver); border: 1px solid rgba(148, 163, 184, 0.4); }
+    .rank-3 { background: rgba(251, 146, 60, 0.15); color: var(--bronze); border: 1px solid rgba(251, 146, 60, 0.4); }
 
     .car-image {
-      width: 72px;
+      width: 76px;
       aspect-ratio: 16 / 10;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(20, 184, 166, .2), rgba(250, 204, 21, .08)),
-        linear-gradient(160deg, #1f2937, #0b1017);
+      border-radius: 6px;
+      background: #05070c;
       display: grid;
       place-items: center;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .car-image img {
@@ -222,43 +211,110 @@
       display: block;
     }
 
+    .car-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
     .car-name {
       margin: 0;
       font-weight: 900;
+      font-size: 15px;
       line-height: 1.2;
-      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    time {
+    .car-tuning {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
       font-variant-numeric: tabular-nums;
-      font-weight: 850;
     }
 
-    .best-record time {
-      color: #a3e635;
-      text-shadow: 0 0 8px rgba(163, 230, 53, 0.3);
-      font-weight: 900;
+    .block-tracks {
+      display: flex;
+      gap: 12px;
+      flex: 1.6;
+    }
+
+    .track-group {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .track-cell {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .track-name {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-time {
+      font-size: 13.5px;
+      font-weight: 850;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .track-cell.best-record .track-time {
+      color: var(--green);
+      text-shadow: 0 0 10px var(--green-glow);
     }
 
     .empty {
-      padding: 34px 16px;
+      padding: 50px 16px;
       color: var(--muted);
       text-align: center;
       font-weight: 800;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
     }
 
-    @media (max-width: 1180px) {
-      .header-inner { grid-template-columns: 1fr; }
-      .tabs { justify-self: stretch; width: 100%; grid-auto-columns: 1fr; }
-      .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .rank-shell { overflow-x: auto; }
-      table { min-width: 800px; }
+    @media (max-width: 960px) {
+      .car-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 14px;
+      }
+      .block-info {
+        width: 100%;
+        min-width: 0;
+      }
+      .block-tracks {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .track-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 640px) {
       .header-inner,
-      main { width: min(100% - 20px, 1150px); }
-      .metric-strip { grid-template-columns: 1fr; }
+      main { width: min(100% - 20px, 1200px); }
+      .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .state-tabs { width: 100%; grid-auto-columns: 1fr; }
     }
   </style>
@@ -281,7 +337,6 @@
   <main>
     <section class="state-row">
       <div class="state-tabs" aria-label="돌파 상태">
-        <!-- 명함 / 풀돌 텍스트 변경 -->
         <button class="state-tab" data-state="base" aria-selected="true">ECU 0</button>
         <button class="state-tab" data-state="full" aria-selected="false">ECU 5</button>
       </div>
@@ -289,14 +344,7 @@
 
     <section class="metric-strip" id="metrics" aria-label="최고 기록"></section>
 
-    <section class="rank-shell">
-      <table>
-        <thead>
-          <tr id="headRow"></tr>
-        </thead>
-        <tbody id="rankBody"></tbody>
-      </table>
-    </section>
+    <div class="card-list" id="cardList"></div>
   </main>
 
   <script>
@@ -304,8 +352,7 @@
     const els = {
       classTabs: document.querySelectorAll(".tab"),
       stateTabs: document.querySelectorAll(".state-tab"),
-      headRow: document.getElementById("headRow"),
-      rankBody: document.getElementById("rankBody"),
+      cardList: document.getElementById("cardList"),
       metrics: document.getElementById("metrics")
     };
 
@@ -319,7 +366,7 @@
         state.data = await response.json();
       } catch {
         state.data = { tracks: [], cars: [] };
-        els.rankBody.innerHTML = `<tr><td class="empty">racingmaster-data.json 파일을 같은 폴더에 올려주세요.</td></tr>`;
+        els.cardList.innerHTML = `<div class="empty">racingmaster-data.json 파일을 같은 폴더에 올려주세요.</div>`;
         return;
       }
       render();
@@ -342,23 +389,14 @@
 
     function render() {
       syncTabs();
-      renderHead();
       const ranked = getRankedCars();
       renderMetrics(ranked);
-      renderRows(ranked);
+      renderCards(ranked);
     }
 
     function syncTabs() {
       els.classTabs.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.class === state.class)));
       els.stateTabs.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.state === state.breakthrough)));
-    }
-
-    function renderHead() {
-      els.headRow.innerHTML = `
-        <th class="col-rank">순위</th>
-        <th class="col-car">차량</th>
-        ${state.data.tracks.map((track) => `<th>${escapeHtml(track.name)}</th>`).join("")}
-      `;
     }
 
     function getRankedCars() {
@@ -403,29 +441,62 @@
       }).join("");
     }
 
-    function renderRows(cars) {
+    function renderCards(cars) {
       if (!cars.length) {
-        els.rankBody.innerHTML = `<tr><td colspan="${state.data.tracks.length + 2}" class="empty">표시할 차량이 없습니다.</td></tr>`;
+        els.cardList.innerHTML = `<div class="empty">표시할 차량이 없습니다.</div>`;
         return;
       }
       
       const best = getBestRecords(cars);
+      const tracks = state.data.tracks;
 
-      els.rankBody.innerHTML = cars.map((car, index) => `
-        <tr>
-          <td><span class="rank-badge rank-${index + 1}">${index + 1}</span></td>
-          <td>
-            <div class="car-cell">
-              <div class="car-image">${imageSrc(car) ? `<img src="${escapeHtml(imageSrc(car))}" alt="${escapeHtml(car.name)}">` : `<span class="car-shape" aria-hidden="true"></span>`}</div>
-              <p class="car-name">${escapeHtml(car.name)}</p>
+      els.cardList.innerHTML = cars.map((car, index) => {
+        const rank = index + 1;
+        const rankClass = rank <= 3 ? `rank-${rank}` : "";
+        const tuningVal = car.tuning ? escapeHtml(car.tuning) : "00000";
+
+        const trackGroups = [];
+        for (let i = 0; i < tracks.length; i += 2) {
+          trackGroups.push(tracks.slice(i, i + 2));
+        }
+
+        const trackBlocksHtml = trackGroups.map((group) => `
+          <div class="track-group">
+            ${group.map((track) => {
+              const recordMs = car.records[state.breakthrough][track.id];
+              const isBest = recordMs === best[track.id];
+              let trackDisplayName = track.name;
+              if (trackDisplayName.includes("인디애나폴리스")) {
+                trackDisplayName = trackDisplayName.replace("인디애나폴리스", "인디애나");
+              }
+              return `
+                <div class="track-cell ${isBest ? 'best-record' : ''}">
+                  <span class="track-name" title="${escapeHtml(track.name)}">${escapeHtml(trackDisplayName)}</span>
+                  <span class="track-time">${formatTime(recordMs)}</span>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `).join("");
+
+        return `
+          <article class="car-card">
+            <div class="block-info">
+              <span class="rank-badge ${rankClass}">${rank}</span>
+              <div class="car-image">
+                ${imageSrc(car) ? `<img src="${escapeHtml(imageSrc(car))}" alt="${escapeHtml(car.name)}">` : `<span aria-hidden="true"></span>`}
+              </div>
+              <div class="car-meta">
+                <p class="car-name" title="${escapeHtml(car.name)}">${escapeHtml(car.name)}</p>
+                <p class="car-tuning">튜닝: ${tuningVal}</p>
+              </div>
             </div>
-          </td>
-          ${state.data.tracks.map((track) => {
-            const isBestRecord = car.records[state.breakthrough][track.id] === best[track.id];
-            return `<td class="${isBestRecord ? 'best-record' : ''}"><time>${formatTime(car.records[state.breakthrough][track.id])}</time></td>`;
-          }).join("")}
-        </tr>
-      `).join("");
+            <div class="block-tracks">
+              ${trackBlocksHtml}
+            </div>
+          </article>
+        `;
+      }).join("");
     }
 
     function formatTime(ms) {
