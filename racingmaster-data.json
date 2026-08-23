@@ -304,6 +304,28 @@
           "redbull_fiesta": 85522
         }
       }
+    },
+    {
+      "id": "car-1787476072589",
+      "name": "Beetle '67",
+      "class": "standard",
+      "tuning": "11332",
+      "maxPoint": 813,
+      "imageName": "BEETLE67.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 96684,
+          "sicilia": 82471,
+          "indy_reverse": 98013,
+          "redbull_fiesta": 91098
+        },
+        "full": {
+          "tokyo_skytree_half": 92387,
+          "sicilia": 79271,
+          "indy_reverse": 93227,
+          "redbull_fiesta": 85929
+        }
+      }
     }
   ]
 }
