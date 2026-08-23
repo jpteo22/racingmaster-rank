@@ -150,6 +150,28 @@
           "redbull_fiesta": 83789
         }
       }
+    },
+    {
+      "id": "car-1787455717248",
+      "name": "S2000 Extreme '09",
+      "class": "standard",
+      "tuning": "23232",
+      "maxPoint": 853,
+      "imageName": "S2000E09.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 97107,
+          "sicilia": 82137,
+          "indy_reverse": 96813,
+          "redbull_fiesta": 89457
+        },
+        "full": {
+          "tokyo_skytree_half": 89999,
+          "sicilia": 76349,
+          "indy_reverse": 90602,
+          "redbull_fiesta": 84619
+        }
+      }
     }
   ]
 }
