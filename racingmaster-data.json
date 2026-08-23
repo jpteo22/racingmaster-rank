@@ -87,7 +87,7 @@
     },
     {
       "id": "car-1787416661779",
-      "name": "RX7 Initial D '01",
+      "name": "RX7 '01 Initial D",
       "class": "standard",
       "tuning": "23232",
       "maxPoint": 855,
@@ -244,7 +244,7 @@
       "name": "Emira '21",
       "class": "standard",
       "tuning": "23232",
-      "maxPoint": 0,
+      "maxPoint": 810,
       "imageName": "EMIRA21.png",
       "records": {
         "base": {
