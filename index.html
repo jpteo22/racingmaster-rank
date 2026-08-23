@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>레이싱마스터 랭킹 뷰어</title>
+  <title>Racing Master TIER</title>
   
   <!-- Pretendard 웹폰트 -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
@@ -66,9 +66,10 @@
       justify-self: start;
     }
 
+    /* 타이틀 폰트 사이즈 1.2배 확대 (15px~20px -> 18px~24px) */
     h1 {
       margin: 0;
-      font-size: clamp(15px, 2vw, 20px);
+      font-size: clamp(18px, 2.4vw, 24px);
       font-weight: 800;
       letter-spacing: 0.5px;
       color: #e2e8f0;
@@ -243,9 +244,9 @@
       transition: border-color 0.2s ease, background 0.2s ease;
     }
 
-    /* 5개 단위로 30px 띄움 (마지막 카드가 아닌 경우만) */
+    /* 5개 단위 여백 +10px 추가 (기존 margin 20px -> 30px) */
     .car-card:nth-child(5n):not(:last-child) {
-      margin-bottom: 20px; /* 기본 gap 10px + margin 20px = 총 30px 간격 */
+      margin-bottom: 30px; 
     }
 
     .car-card:hover {
@@ -279,6 +280,7 @@
     .rank-2 { background: rgba(148, 163, 184, 0.15); color: var(--silver); border: 1px solid rgba(148, 163, 184, 0.4); }
     .rank-3 { background: rgba(251, 146, 60, 0.15); color: var(--bronze); border: 1px solid rgba(251, 146, 60, 0.4); }
 
+    /* 요청하신 차량 이미지 너비 90px 지정 */
     .car-image {
       width: 90px;
       aspect-ratio: 16 / 10;
@@ -395,13 +397,12 @@
 
     /* ==== 모바일 및 태블릿 ==== */
     @media (max-width: 960px) {
-      .tab { font-size: 14px; }
       .metric-map { width: 42px; }
       .metric-body span.track-label { font-size: 10px; }
       .metric-body strong { font-size: 14px; }
       .metric-body span.track-car { font-size: 10.5px; }
       .rank-badge { width: 28px; height: 28px; font-size: 13px; }
-      .car-image { width: 56px; }
+      .car-image { width: 70px; } /* 모바일 가로 너비도 비례해서 조정 */
       .car-name { font-size: 13.5px; }
       .car-sub-info { font-size: 11px; }
       .car-score-large { font-size: 20px; }
@@ -412,14 +413,14 @@
       .car-card {
         flex-direction: column;
         align-items: stretch;
-        gap: 2px; /* 라인 아래 여백 2px */
-        padding: 4px 8px; /* 위아래 4px, 좌우 8px */
+        gap: 2px;
+        padding: 4px 8px;
       }
       .block-info {
         width: 100%;
         max-width: none;
         flex: none;
-        padding-bottom: 5px; /* 라인 위 여백 5px */
+        padding-bottom: 5px;
         border-bottom: 1px solid var(--line-strong);
       }
       .block-tracks {
@@ -427,7 +428,7 @@
         gap: 4px;
       }
       .track-cell {
-        padding: 2px 4px; /* 랩타임셀 안쪽여백 상하 2px, 좌우 4px */
+        padding: 2px 4px;
       }
       .track-name { font-size: 9px; }
       .track-time { font-size: 11px; }
@@ -448,16 +449,20 @@
         justify-self: center;
       }
       
+      /* 모바일 클래스 탭: 가로 폭 1.3배 지정 (width: 130%) */
       .tabs {
-        width: 100%;
+        width: 130%;
+        max-width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        padding: 2px;
       }
       
+      /* 모바일 클래스 탭: 높이를 ECU 탭과 동일한 28px로 축소 */
       .tab {
         padding: 0 4px;
-        font-size: 13px;
-        min-height: 36px;
+        font-size: 12px;
+        min-height: 28px;
         text-align: center;
       }
 
@@ -470,7 +475,7 @@
   <header class="app-header">
     <div class="header-inner">
       <div class="brand">
-        <h1>레이싱마스터 랭킹</h1>
+        <h1>Racing Master TIER</h1>
       </div>
       
       <div class="nav-container">
