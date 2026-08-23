@@ -22,8 +22,10 @@
     {
       "id": "car-1787416221242",
       "name": "GT86 '13 MF Ghost",
-      "imageName": "GT8613.png",
       "class": "standard",
+      "tuning": "23332",
+      "maxPoint": 850,
+      "imageName": "GT8613.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 95598,
@@ -42,8 +44,10 @@
     {
       "id": "car-1787416342877",
       "name": "Xsara WRC '04",
-      "imageName": "XSARA04.png",
       "class": "standard",
+      "tuning": "23332",
+      "maxPoint": 807,
+      "imageName": "XSARA04.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 99918,
@@ -62,8 +66,10 @@
     {
       "id": "car-1787416592616",
       "name": "AE86 '85 Initial D",
-      "imageName": "AE86D85.png",
       "class": "standard",
+      "tuning": "23232",
+      "maxPoint": 855,
+      "imageName": "AE86D85.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 93274,
@@ -82,8 +88,10 @@
     {
       "id": "car-1787416661779",
       "name": "RX7 Initial D '01",
-      "imageName": "RX7D01.png",
       "class": "standard",
+      "tuning": "23232",
+      "maxPoint": 855,
+      "imageName": "RX7D01.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 93975,
@@ -102,8 +110,10 @@
     {
       "id": "car-1787416704069",
       "name": "RX7 '01",
-      "imageName": "RX701.png",
       "class": "standard",
+      "tuning": "23232",
+      "maxPoint": 850,
+      "imageName": "RX701.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 94923,
@@ -122,8 +132,10 @@
     {
       "id": "car-1787416764355",
       "name": "GT-R32 Initial D '94",
-      "imageName": "GTR32D94.png",
       "class": "standard",
+      "tuning": "23332",
+      "maxPoint": 845,
+      "imageName": "GTR32D94.png",
       "records": {
         "base": {
           "tokyo_skytree_half": 96432,
