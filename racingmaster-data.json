@@ -282,6 +282,28 @@
           "redbull_fiesta": 86046
         }
       }
+    },
+    {
+      "id": "car-1787475141450",
+      "name": "Z4 sDrive 35is '13",
+      "class": "standard",
+      "tuning": "23232",
+      "maxPoint": 794,
+      "imageName": "Z413.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 101501,
+          "sicilia": 85803,
+          "indy_reverse": 101207,
+          "redbull_fiesta": 93037
+        },
+        "full": {
+          "tokyo_skytree_half": 93396,
+          "sicilia": 78494,
+          "indy_reverse": 93178,
+          "redbull_fiesta": 85522
+        }
+      }
     }
   ]
 }
