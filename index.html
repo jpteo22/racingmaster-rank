@@ -16,6 +16,8 @@
       --line-strong: #334155;
       --accent: #f59e0b;
       --accent-glow: rgba(245, 158, 11, 0.35);
+      --ecu-active: #38bdf8; /* ECU 버튼 전용 블루 컬러 */
+      --ecu-glow: rgba(56, 189, 248, 0.35);
       --green: #22c55e;
       --red: #ef4444;
       --gold: #fbbf24;
@@ -36,6 +38,7 @@
 
     button { font: inherit; cursor: pointer; }
 
+    /* 헤더 영역 (상단 고정) */
     .app-header {
       position: sticky;
       top: 0;
@@ -64,8 +67,8 @@
       text-transform: uppercase;
     }
 
-    .tabs,
-    .state-tabs {
+    /* 클래스 탭 (오렌지) */
+    .tabs {
       display: inline-grid;
       grid-auto-flow: column;
       gap: 4px;
@@ -73,44 +76,66 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+      justify-self: center;
     }
 
-    .tabs { justify-self: center; }
-
-    .tab,
-    .state-tab {
+    .tab {
       min-height: 38px;
       border: 0;
       border-radius: 6px;
       background: transparent;
       color: var(--muted);
       padding: 0 20px;
-      font-size: 15px; /* PC 폰트 크기업 */
+      font-size: 15px;
       font-weight: 800;
       white-space: nowrap;
       transition: all 0.2s ease;
     }
 
-    .tab[aria-selected="true"],
-    .state-tab[aria-selected="true"] {
+    .tab[aria-selected="true"] {
       background: var(--accent);
       color: #080c14;
       box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    main {
-      width: min(1200px, calc(100% - 24px));
-      margin: 10px auto 30px;
-    }
-
-    .state-row {
-      display: grid;
-      place-items: center;
-      margin-bottom: 10px;
+    /* ECU 상태 탭 (작은 사이즈, 블루) */
+    .header-right {
+      display: flex;
+      justify-content: flex-end;
     }
 
     .state-tabs {
-      min-width: min(240px, 100%);
+      display: inline-flex;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .state-tab {
+      min-height: 28px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--muted);
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .state-tab[aria-selected="true"] {
+      background: var(--ecu-active);
+      color: #05070c;
+      box-shadow: 0 0 10px var(--ecu-glow);
+    }
+
+    /* 메인 콘텐츠 */
+    main {
+      width: min(1200px, calc(100% - 24px));
+      margin: 10px auto 30px;
     }
 
     .metric-strip {
@@ -131,7 +156,7 @@
     }
 
     .metric-map {
-      width: 46px; /* PC 사이즈업 */
+      width: 46px;
       aspect-ratio: 1 / 1;
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -160,7 +185,7 @@
     .metric-body span.track-label {
       display: block;
       color: var(--muted);
-      font-size: 11px; /* PC 폰트 크기업 */
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       white-space: nowrap;
@@ -170,7 +195,7 @@
 
     .metric-body strong {
       display: block;
-      font-size: 16px; /* PC 폰트 크기업 */
+      font-size: 16px;
       line-height: 1.1;
       font-variant-numeric: tabular-nums;
     }
@@ -178,7 +203,7 @@
     .metric-body span.track-car {
       display: block;
       color: var(--green);
-      font-size: 11.5px; /* PC 폰트 크기업 */
+      font-size: 11.5px;
       font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
@@ -221,13 +246,13 @@
     .rank-badge {
       display: inline-grid;
       place-items: center;
-      width: 30px; /* PC 사이즈업 */
+      width: 30px;
       height: 30px;
       border-radius: 5px;
       background: var(--line);
       color: var(--text);
       font-weight: 900;
-      font-size: 14px; /* PC 폰트 크기업 */
+      font-size: 14px;
       flex-shrink: 0;
     }
 
@@ -236,7 +261,7 @@
     .rank-3 { background: rgba(251, 146, 60, 0.15); color: var(--bronze); border: 1px solid rgba(251, 146, 60, 0.4); }
 
     .car-image {
-      width: 62px; /* PC 사이즈업 */
+      width: 62px;
       aspect-ratio: 16 / 10;
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -265,7 +290,7 @@
     .car-name {
       margin: 0;
       font-weight: 900;
-      font-size: 15px; /* PC 폰트 크기업 */
+      font-size: 15px;
       line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
@@ -276,7 +301,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px; /* PC 폰트 크기업 */
+      font-size: 12px;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
     }
@@ -290,7 +315,7 @@
     }
 
     .car-score-large {
-      font-size: 22px; /* PC 폰트 크기업 */
+      font-size: 22px;
       font-weight: 900;
       color: var(--red);
       font-variant-numeric: tabular-nums;
@@ -321,7 +346,7 @@
     }
 
     .track-name {
-      font-size: 11px; /* PC 폰트 크기업 */
+      font-size: 11px;
       font-weight: 800;
       color: var(--muted);
       white-space: nowrap;
@@ -330,7 +355,7 @@
     }
 
     .track-time {
-      font-size: 13.5px; /* PC 폰트 크기업 */
+      font-size: 13.5px;
       font-weight: 850;
       font-variant-numeric: tabular-nums;
     }
@@ -349,9 +374,9 @@
       border-radius: 6px;
     }
 
-    /* ==== 모바일 및 태블릿 (기존 폰트 크기 유지) ==== */
+    /* ==== 모바일 및 태블릿 ==== */
     @media (max-width: 960px) {
-      .tab, .state-tab { font-size: 14px; }
+      .tab { font-size: 14px; }
       .metric-map { width: 42px; }
       .metric-body span.track-label { font-size: 10px; }
       .metric-body strong { font-size: 14px; }
@@ -397,6 +422,11 @@
         padding: 8px 0;
       }
       
+      .header-right {
+        justify-content: center;
+        width: 100%;
+      }
+      
       .tabs {
         width: 100%;
         display: grid;
@@ -411,7 +441,6 @@
       }
 
       .metric-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
-      .state-tabs { width: 100%; grid-auto-columns: 1fr; }
       .track-name { font-size: 8.5px; }
     }
   </style>
@@ -427,20 +456,18 @@
         <button class="tab" data-class="performance" aria-selected="false">퍼포먼스</button>
         <button class="tab" data-class="extreme" aria-selected="false">익스트림</button>
       </nav>
-      <div></div>
+      <div class="header-right">
+        <!-- ECU 탭이 헤더 안으로 이동됨 -->
+        <div class="state-tabs" aria-label="돌파 상태">
+          <button class="state-tab" data-state="base" aria-selected="true">ECU 0</button>
+          <button class="state-tab" data-state="full" aria-selected="false">ECU 5</button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="state-row">
-      <div class="state-tabs" aria-label="돌파 상태">
-        <button class="state-tab" data-state="base" aria-selected="true">ECU 0</button>
-        <button class="state-tab" data-state="full" aria-selected="false">ECU 5</button>
-      </div>
-    </section>
-
     <section class="metric-strip" id="metrics" aria-label="최고 기록"></section>
-
     <div class="card-list" id="cardList"></div>
   </main>
 
