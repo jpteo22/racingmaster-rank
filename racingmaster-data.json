@@ -172,6 +172,50 @@
           "redbull_fiesta": 84619
         }
       }
+    },
+    {
+      "id": "car-1787457004304",
+      "name": "Pony Sedan '75",
+      "class": "standard",
+      "tuning": "23322",
+      "maxPoint": 828,
+      "imageName": "PONY75.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 100661,
+          "sicilia": 85775,
+          "indy_reverse": 101852,
+          "redbull_fiesta": 93457
+        },
+        "full": {
+          "tokyo_skytree_half": 88959,
+          "sicilia": 77289,
+          "indy_reverse": 90951,
+          "redbull_fiesta": 85120
+        }
+      }
+    },
+    {
+      "id": "car-1787457219096",
+      "name": "M2 Coupe '23",
+      "class": "standard",
+      "tuning": "00000",
+      "maxPoint": 814,
+      "imageName": "M2COUPE23.png",
+      "records": {
+        "base": {
+          "tokyo_skytree_half": 97625,
+          "sicilia": 83680,
+          "indy_reverse": 92622,
+          "redbull_fiesta": 92622
+        },
+        "full": {
+          "tokyo_skytree_half": 92006,
+          "sicilia": 77238,
+          "indy_reverse": 85977,
+          "redbull_fiesta": 85977
+        }
+      }
     }
   ]
 }
